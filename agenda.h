@@ -5,6 +5,10 @@
 #include <vector>
 #include <list>
 #include "lib.h"
+#include <queue> // para priority_queue
+#include <deque> 
+#include <map> // para map
+#include <stack> 
 
 using namespace std;
 
@@ -21,6 +25,7 @@ class Agenda {
      * Complejidad: O(1), usando una referencia no modificable.
      */
     const list<Reserva>& reservas() const;
+    //devuelve las reservas que se hicieron 
 
     /**
      * Método utilizado para registrar una nueva reserva en la agenda.
@@ -37,6 +42,7 @@ class Agenda {
      * Complejidad esperada: O(1)
      */
     int cantidad_reservas() const;
+    //mantener un entero 
 
     /**
      * Devuelve las últimas `k` reservas registradas.
@@ -45,6 +51,7 @@ class Agenda {
      * Complejidad esperada: O(k)
      */
     vector<Reserva> ultimas_reservas(int k) const;
+    //recorrer la list y ya esta. es doble enlazada. 
 
     /**
      * Devuelve la cantidad de reservas que hay para el día de `t`.
@@ -56,6 +63,7 @@ class Agenda {
      * de días distintos con reservas
      */
     int reservas_del_dia(timestamp t) const;
+    // metodo de resolucion:: arbol con orden, nodo izq mas chico y nodo dercho mas grande. encontrar un nodo en peor caso seria la altura del arbol que es Log(N)???
 
     /**
      * Devuelve los nombres de los `k` clientes que más reservas realizaron.
@@ -64,6 +72,8 @@ class Agenda {
      * Complejidad esperada: O(k)
      */
     vector<string> clientes_frecuentes(int k) const;
+    // metodo de resolucion:: opcion1) mapa de claves nombre de cliente y valor numero de reservas 
+    // max heap y devuelvo hasta k??
 
   private:
     // =====================================================================
@@ -74,7 +84,6 @@ class Agenda {
     // Recordar que también hay que presentarlo escrito en lenguaje formal.
     //
     // =====================================================================
-
     // =====================================================================
     // TODO: A partir de aquí, modificar la estructura según sea necesario y
     // escribir en un comentario invariante de representación en castellano.
@@ -82,6 +91,19 @@ class Agenda {
 
     /** Listado de todas las reservas realizadas */
     list<Reserva> _reservas;
-};
+    deque<Reserva> _deque_reservas; // uso deque para poder indexar en O(1)
+    int _cant_reservas; 
+    //max_heap con las reservas mas nuevas y vas buscando hijos??
+    priority_queue<pair<timestamp, int>, vector<pair<timestamp, int>>, greater<pair<timestamp, int>>>min_heap_reservas_por_dia; // para reservas del dia, guardo el timestamp del dia y la cantidad de reservas en ese dia. el vectro es para el contenedor del heap, el greater es para que sea un min heap.
+    //estructura alternativa 
+    map<timestamp, pair<int, vector<Reserva> >>mapa_reservas_por_dia; // para reservas del dia, guardo el timestamp del dia y la cantidad de reservas en ese dia. operaciones de mapa: todas log(n)
+    //e
+    //mapa de cliente a cantidad de reservas para clientes frecuentes
+    map<string, int> mapa_clientes_frecuentes;// operaciones de mapa: todas log(n)
+    // mas conveniente un max_ heap y ir recorriendo el vector. que el vector tengo dentro un par que sea 
 
-#endif
+
+};  
+
+#endif 
+
