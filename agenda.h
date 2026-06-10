@@ -101,6 +101,7 @@ class Agenda {
     //mapa de cliente a cantidad de reservas para clientes frecuentes
     map<string, int> mapa_clientes_frecuentes;// operaciones de mapa: todas log(n)
     // mas conveniente un max_ heap y ir recorriendo el vector. que el vector tengo dentro un par que sea 
+    priority_queue<pair<string, int>, vector<pair<string, int>>, greater<pair<string, int>>>_clientes_frecuentes; // orden pero por entero, busco los k mas grandes dentro del max heap. es decir recorro de forma lineal hasta k la queue. 
 
 
 };  

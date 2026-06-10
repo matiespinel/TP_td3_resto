@@ -106,7 +106,7 @@ vector<string> Agenda::clientes_frecuentes(int k) const {
      */
     vector<string> resultado;
     // Busco en el mapa en base a la cantidad de reservas por cliente, y voy agregando a resultado hasta tener k clientes o no haber más clientes
-    auto it = mapa_reservas_por_dia.find(k);
+    //auto it = mapa_reservas_por_dia.find(k); quizas no usar mapa y usar max heap 
     
     
     
