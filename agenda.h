@@ -91,14 +91,8 @@ class Agenda {
     list<Reserva> _reservas;
     deque<Reserva> _deque_reservas; // uso deque para poder indexar en O(1)
     int _cant_reservas; 
-    //max_heap con las reservas mas nuevas y vas buscando hijos??
-    priority_queue<pair<timestamp, int>, vector<pair<timestamp, int>>, greater<pair<timestamp, int>>>min_heap_reservas_por_dia; // para reservas del dia, guardo el timestamp del dia y la cantidad de reservas en ese dia. el vectro es para el contenedor del heap, el greater es para que sea un min heap.
     //estructura alternativa 
     map<timestamp, pair<int, vector<Reserva>>> _reservas_por_dia;// para reservas del dia, guardo el timestamp del dia y la cantidad de reservas en ese dia. operaciones de mapa: todas log(n)
-
-    //mapa de cliente a cantidad de reservas para clientes frecuentes
-    map<string, int> mapa_clientes_frecuentes;// operaciones de mapa: todas log(n)
-
     vector<pair<string, int>> _frecuencia_clientes; //Vector que almacena el cliente y la cantidad de reservas que realizó
 
 };  
