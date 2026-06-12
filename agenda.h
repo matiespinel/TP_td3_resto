@@ -48,7 +48,7 @@ class Agenda {
      * Devuelve las últimas `k` reservas registradas.
      * Si hay menos de k reservas, devuelve todas las existentes.
      *
-     * Complejidad esperada: O(k)
+     * Complejidad esperada: O(k).
      */
     vector<Reserva> ultimas_reservas(int k) const;
     //recorrer la list y ya esta. es doble enlazada. 
@@ -72,8 +72,6 @@ class Agenda {
      * Complejidad esperada: O(k)
      */
     vector<string> clientes_frecuentes(int k) const;
-    // metodo de resolucion:: opcion1) mapa de claves nombre de cliente y valor numero de reservas 
-    // max heap y devuelvo hasta k??
 
   private:
     // =====================================================================
@@ -96,13 +94,12 @@ class Agenda {
     //max_heap con las reservas mas nuevas y vas buscando hijos??
     priority_queue<pair<timestamp, int>, vector<pair<timestamp, int>>, greater<pair<timestamp, int>>>min_heap_reservas_por_dia; // para reservas del dia, guardo el timestamp del dia y la cantidad de reservas en ese dia. el vectro es para el contenedor del heap, el greater es para que sea un min heap.
     //estructura alternativa 
-    map<timestamp, pair<int, vector<Reserva> >>mapa_reservas_por_dia; // para reservas del dia, guardo el timestamp del dia y la cantidad de reservas en ese dia. operaciones de mapa: todas log(n)
-    //e
+    map<timestamp, pair<int, vector<Reserva>>> _reservas_por_dia;// para reservas del dia, guardo el timestamp del dia y la cantidad de reservas en ese dia. operaciones de mapa: todas log(n)
+
     //mapa de cliente a cantidad de reservas para clientes frecuentes
     map<string, int> mapa_clientes_frecuentes;// operaciones de mapa: todas log(n)
-    // mas conveniente un max_ heap y ir recorriendo el vector. que el vector tengo dentro un par que sea 
-    priority_queue<pair<string, int>, vector<pair<string, int>>, greater<pair<string, int>>>_clientes_frecuentes; // orden pero por entero, busco los k mas grandes dentro del max heap. es decir recorro de forma lineal hasta k la queue. 
 
+    vector<pair<string, int>> _frecuencia_clientes; //Vector que almacena el cliente y la cantidad de reservas que realizó
 
 };  
 
