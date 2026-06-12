@@ -64,7 +64,7 @@ void Agenda::registrar_reserva(Reserva r) {
 int Agenda::cantidad_reservas() const {
     return _cant_reservas; // O(1)
 
-}
+} //O(uan)
 
 vector<Reserva> Agenda::ultimas_reservas(int k) const { // O(k)
     /**
@@ -77,10 +77,11 @@ vector<Reserva> Agenda::ultimas_reservas(int k) const { // O(k)
     vector<Reserva> resultado; // O(1)
     int n = _deque_reservas.size();// O(1)
     int desde = max(0, n - k); // O(1), como lo mas nuevo va atras y lo mas viejo va adelante, entonces desde es n-k para tomar las ultimas k reservas. Si hay menos de k, entonces desde es 0 para tomar todas las reservas.
-
+    //O(3)
     for (int i = n - 1; i >= desde; i--) { // O(k) en total, ya que se recorre a lo sumo k elementos o menos
         resultado.push_back(_deque_reservas[i]); // O(1) amortizada 
     }
+    //0(3 + k)
 
     return resultado; // O(k) en total
 }
@@ -95,7 +96,7 @@ int Agenda::reservas_del_dia(timestamp t) const {
     }
     
     return 0; // no esta el dia O(1)
-}
+}// O(Log(D))
 
 vector<string> Agenda::clientes_frecuentes(int k) const {
     /**
@@ -111,4 +112,4 @@ vector<string> Agenda::clientes_frecuentes(int k) const {
     }
 
     return resultado;// O(1)
-}
+}// O(k) listoooo
